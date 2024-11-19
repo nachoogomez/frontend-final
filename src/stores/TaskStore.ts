@@ -8,7 +8,7 @@ interface TaskFilterState extends TaskState {
 }
 
 export const useTaskStore = defineStore({
-  id: 'id',
+  id: 'task',
   state: (): TaskFilterState => ({
     loading: false,
     data: [],

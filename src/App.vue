@@ -2,10 +2,21 @@
 import { reactive } from 'vue'
 import { MoonIcon, SunIcon } from '@heroicons/vue/24/solid'
 import { useThemeStore } from '@/stores/ThemeStore'
+import { useSesionStore } from '@/stores/AuthSesionStore'
 import Footer from '@/components/Footer.vue'
 
+//Theme
 const useStore = useThemeStore()
 const theme = reactive(useStore)
+
+//Session
+const sesionStore = useSesionStore()
+const sesion = reactive(sesionStore)
+
+async function logout() {
+  await sesion.logout()
+}
+
 </script>
 
 <template>
@@ -23,6 +34,7 @@ const theme = reactive(useStore)
               <MoonIcon v-if="!theme.isDark" class="w-4 h-4 text-white" />
               <SunIcon v-if="theme.isDark" class="w-full h-full text-yellow-500 p-1" />
             </div>
+            <button v-bind:class="sesion.data.user? 'bg-slate-600 rounded-md p-2 mt-2 text-white font-semibold': 'hidden'" @click.prevent="logout()">Logout</button>
           </div>
         </label>
       </div>
