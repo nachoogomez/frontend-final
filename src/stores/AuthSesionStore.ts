@@ -125,17 +125,3 @@ export const useSesionStore = defineStore({
   },
 })
 
-/*
-  -changeCrsfToken: Updates the CSRF token from the API instance headers and logs a console log. 
-  -changeCrsToken: Actualiza el token CSRF de los encabezados de la instancia de la API y registra un registro en la consola.
-
-  -registerUser: Register a new user with the credentialsModel, update the store data and state, log the new user if the register is successful and call the login method. If we have an error, it logs the error and update the store error state.
-  -registerUser: Registra un nuevo usuario con las credenciales proporcionadas, actualiza los datos y el estado del store, registra el nuevo usuario si el registro es exitoso y llama al método de inicio de sesión. Si hay un error, registra el error y actualiza el estado de error del store.
-
-  -Login: Logs in a user with the credentialsModel, update the store data and state, log the user if the login is successful and redirect to the tasks page. If we have an error, it logs the error and update the store error state.
-  -Login: Inicia sesión con las credenciales proporcionadas, actualiza los datos y el estado del store, registra el usuario si el inicio de sesión es exitoso y redirige a la página de tareas. Si hay un error, registra el error y actualiza el estado de error del store.
-
-  -Logout: Logs out the current user, update the store data and state, log the user if the logout is successful and redirect to the home page. If we have an error, it logs the error and update the store error state.
-  -Logout: Cierra la sesión del usuario actual, actualiza los datos y el estado del store, registra el usuario si el cierre de sesión es exitoso y redirige a la página de inicio. Si hay un error, registra el error y actualiza el estado de error del store.
-
-*/
