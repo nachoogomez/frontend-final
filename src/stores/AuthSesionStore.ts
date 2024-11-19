@@ -11,6 +11,9 @@ import { apiInstance } from '@/services/api'
 
 //Define store
 
+/**
+ * Store for managing user session.
+ */
 export const useSesionStore = defineStore({
   id: 'sesion',
   state: (): SesionStateModel => ({
@@ -23,14 +26,19 @@ export const useSesionStore = defineStore({
     error: '',
   }),
   actions: {
-    // change crsf token
+    /**
+     * Updates the CSRF token from the API instance headers.
+     */
     changeCrsfToken() {
       const headers = apiInstance.defaults.headers 
       this.data!.crsfToken = headers["csrf-token"]?.toString() 
       console.info('[Sesion Store 🔑] CRSF Token Updated') 
     },
 
-    // Register user
+    /**
+     * Registers a new user with the provided credentials.
+     * @param userData - The credentials of the user to register.
+     */
     async registerUser(userData: CredentialsModel) {
       this.loading = true
       try {
@@ -48,7 +56,10 @@ export const useSesionStore = defineStore({
       }
     },
 
-    // Login user
+    /**
+     * Logs in a user with the provided credentials.
+     * @param userData - The credentials of the user to log in.
+     */
     async login(userData: CredentialsModel) {
       this.loading = true
       try {
@@ -69,6 +80,9 @@ export const useSesionStore = defineStore({
       }
     },
 
+    /**
+     * Logs out the current user.
+     */
     async logout() {
       this.loading = true
       this.data!.user = undefined
@@ -87,6 +101,9 @@ export const useSesionStore = defineStore({
       }
     },
 
+    /**
+     * Renews the JWT token every 3 minutes.
+     */
     renewToken() {
       console.info('[Sesion Store 🔑] Renewing token in 3 min')
       setTimeout(async () => {
@@ -107,3 +124,4 @@ export const useSesionStore = defineStore({
     },
   },
 })
+
