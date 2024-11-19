@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
-import { MoonIcon, SunIcon, LinkIcon } from '@heroicons/vue/24/solid'
+import { MoonIcon, SunIcon } from '@heroicons/vue/24/solid'
 import { useThemeStore } from '@/stores/ThemeStore'
+import Footer from '@/components/Footer.vue'
 
 const useStore = useThemeStore()
 const theme = reactive(useStore)
@@ -31,13 +32,15 @@ const theme = reactive(useStore)
       class="img min-h-screen flex flex-col items-center transition"
     >
       <RouterView />
+     
     </div>
+    
   </div>
+  <Footer/>
 </template>
 
 <style scoped>
 .wrapper {
-  height: 100vh;
   width: 100vw;
   background: #cfcece;
 }
