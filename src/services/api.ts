@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 // Get CSRF token
+// Sends a GET request to the 'auth/csrf' endpoint to retrieve the CSRF token.
 const csrfToken = await axios.get(import.meta.env.VITE_API_ENDPOINT + 'auth/csrf', {
   withCredentials: true,
 })
