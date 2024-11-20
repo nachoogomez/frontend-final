@@ -1,3 +1,4 @@
+<!--Spiner Template-->
 <template>
    <div class="grid min-h-[30px] w-10 place-items-center overflow-x-scroll rounded-lg p-0 lg:overflow-visible">
         <svg class="w-4 h-4 text-gray-50 animate-spin" viewBox="0 0 64 64" fill="none"

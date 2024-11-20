@@ -6,7 +6,7 @@ import type { Task } from '@/models/TaskModel'
 
 // icons
 import { XMarkIcon, PlusCircleIcon } from '@heroicons/vue/24/outline'  
-import { CheckCircleIcon as SolidCircleIcon } from '@heroicons/vue/24/solid'
+
 
 const themeStore = useThemeStore()
 const taskStore = useTaskStore()
@@ -17,10 +17,12 @@ const newTask = reactive<Task>({
   completada: false
 })
 
+//Complete or uncomplete task
 function toggleComplete() {
   newTask.completada = !newTask.completada
 }
 
+//Save task
 function saveTask() {
   if (newTask.tarea.trim()) {
     taskStore.addTask({ ...newTask, id: Date.now() })
@@ -29,6 +31,7 @@ function saveTask() {
   }
 }
 
+//Clear task
 function clearTask() {
   newTask.tarea = ''
   newTask.completada = false
@@ -39,6 +42,7 @@ function clearTask() {
   <div class="wrapper relative group border border-gray-300 rounded-lg overflow-hidden">
     <div class="absolute top-3 sm:top-4 left-5">
       <div class="relative">
+        <!--Inputs for add a completed task -->
         <input
           type="checkbox"
           :checked="newTask.completada"
@@ -53,7 +57,7 @@ function clearTask() {
         />
       </div>
     </div>
-
+    <!--Form for add a new task -->
     <form @submit.prevent="saveTask">
       <input
         v-model="newTask.tarea"

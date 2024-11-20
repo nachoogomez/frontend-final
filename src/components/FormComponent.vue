@@ -19,7 +19,7 @@
   const sesionStore = useSesionStore()
   const sesion = reactive(sesionStore)
 
-  //Login
+  //Credentials login
   const credentials: CredentialsModel = {
     email: '',
     password: '',
@@ -29,6 +29,7 @@
 
   sesion.changeCrsfToken()
   
+  //Function to login with the credentials 
   async function loginWithCredentials() {
       const response = await sesion.login(credentials)
   }
@@ -44,6 +45,7 @@
 
   const regCredentials = reactive(newCredentials)
 
+  //Check if the passwords match
   async function logCredentials() {
       if(rptPwd.value === newCredentials.password) {
           await sesion.registerUser(newCredentials)
@@ -73,21 +75,26 @@
   
       <div v-if="activeTab === 0" class="p-8">
         <h3 class="text-2xl font-semibold text-teal-500 mb-6">Hello</h3>
+        <!--Methods for the login form -->
         <form @submit.prevent="loginWithCredentials()">
           <div class="mb-4">
             <label for="login-email" class="block  text-sm font-semibold mb-2">Email</label>
+             <!--v-model for binding the email input -->
             <input type="email" id="login-email"  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-teal-500" required v-model="reactiveCredentials.email" >
           </div>
           <div class="mb-6">
             <label for="login-password" class="block  text-sm font-semibold mb-2">Password</label>
+             <!--v-model for binding the password input -->
             <input type="password" id="login-password" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-teal-500" required v-model="reactiveCredentials.password">
           </div>
           <div class="flex flex-col items-center">
             <button type="submit" class="w-full bg-teal-500 text-white py-2 px-4 rounded-md hover:bg-teal-600 transition-colors duration-300">
+              <!--If the session is loading show the spinner component-->
               <p v-show="!sesion.loading" class="my-auto p-0 text-center">Login</p>
               <SpinnerComponent v-show="sesion.loading" class="my-auto"/>
             </button>
             <a href="#" class="mt-4 text-teal-500 hover:underline">Forgotten password?</a>
+            <!--If there is an error show the error message-->
             <small v-if="sesion.error===''? false:true" class="text-center text-red-500 text-sm">{{ sesion.error }}</small>
           </div>
         </form>
@@ -95,21 +102,26 @@
   
       <div v-if="activeTab === 1" class="p-8">
         <h3 class="text-2xl font-semibold text-teal-500 mb-6">Welcome</h3>
+        <!--Methods for the register form-->
         <form @submit.prevent="logCredentials()">
           <div class="mb-4">
             <label for="register-email" class="block text-sm font-semibold mb-2">Email</label>
+             <!--v-model for binding the register email input -->
             <input type="email" id="register-email"  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-teal-500" required v-model="newCredentials.email" >
           </div>
           <div class="mb-4">
             <label for="register-password" class="block text-sm font-semibold mb-2">Password</label>
+             <!--v-model for binding the register password input -->
             <input type="password" id="register-password"  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-teal-500" required v-model="newCredentials.password">
           </div>
           <div class="mb-4">
+             <!--v-model for binding the repeat password input -->
             <label for="confirm-password" class="block text-sm font-semibold mb-2">Confirm Password</label>
             <input type="password" id="confirm-password"  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-teal-500" required v-model="rptPwd">
           </div>
           <div class="flex justify-center">
             <button type="submit" class="w-full bg-teal-500 text-white py-2 px-4 rounded-md hover:bg-teal-600 transition-colors duration-300">
+               <!--If the session is loading show the spinner component-->
               <p v-show="!sesion.loading">Login</p>
               <SpinnerComponent v-show="sesion.loading"/>
             </button>
